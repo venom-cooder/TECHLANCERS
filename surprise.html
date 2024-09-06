@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>TECHLANCERS</title>
+  <style>
+    /* Basic styling for TECHLANCERS website */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #0073e6;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .intro {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .bot-section {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    button {
+      background-color: #0073e6;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005bb5;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to TECHLANCERS</h1>
+    <p>Your one-stop solution for freelancing queries.</p>
+  </header>
+
+  <section class="intro">
+    <h2>What is TECHLANCERS?</h2>
+    <p>TECHLANCERS is a platform dedicated to helping freelancers navigate the gig economy. We offer resources, support, and a dedicated bot to answer all your freelancing-related questions.</p>
+  </section>
+
+  <section class="bot-section">
+    <h2>Got a question about freelancing?</h2>
+    <p>Ask our bot any query or doubt you have, and it will help guide you!</p>
+    <button id="bot-button">Chat with Bot</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 TECHLANCERS. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // JavaScript to open the Botpress bot when the button is clicked
+    document.getElementById('bot-button').addEventListener('click', function() {
+      window.open('https://cdn.botpress.cloud/webchat/v2/shareable.html?botId=1d04e74d-1aa9-4d4b-a165-24d50f27a514', '_blank');
+    });
+  </script>
+</body>
+</html>
