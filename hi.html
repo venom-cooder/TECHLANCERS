@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechLancers</title>
+    <!-- Link to Google Font for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #1a1a1a;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        /* Website Title Styling */
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        /* Logo Styling */
+        header img {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            width: 100px;
+            height: auto;
+        }
+
+        /* Button Styling */
+        .btn-container {
+            margin-top: 30px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Form Container */
+        .form-container {
+            display: none;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 40px;
+            max-width: 400px;
+        }
+
+        /* Form Styling */
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Role Selection Container */
+        .role-selection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .role-selection h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        /* Footer Styling */
+        footer {
+            margin-top: auto;
+            background-color: #1a1a1a;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <img src="https://example.com/logo.png" alt="TechLancers Logo">
+        <h1>TechLancers</h1>
+    </header>
+
+    <!-- Role Selection -->
+    <div id="roleSelection" class="role-selection">
+        <h2>Are you a Freelancer or an Employer?</h2>
+        <button class="btn" onclick="selectRole('freelancer')">Freelancer</button>
+        <button class="btn" onclick="selectRole('employer')">Employer</button>
+    </div>
+
+    <!-- Button Container -->
+    <div id="actionSelection" class="btn-container" style="display: none;">
+        <button class="btn" onclick="showLoginForm()">Login</button>
+        <button class="btn" onclick="showSignupForm()">Sign Up</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginForm" class="form-container">
+        <h2>Login</h2>
+        <label for="loginAadhar">Aadhar Card Number:</label>
+        <input type="text" id="loginAadhar" placeholder="Enter Aadhar Card Number">
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" placeholder="Enter Password">
+
+        <button class="btn" onclick="login()">Submit</button>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signupForm" class="form-container">
+        <h2>Sign Up</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter Name">
+
+        <label for="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" placeholder="Enter Mobile Number">
+
+        <label for="aadhar">Aadhar Card Number:</label>
+        <input type="text" id="aadhar" placeholder="Enter Aadhar Card Number">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter Password">
+
+        <button class="btn" onclick="signup()">Submit</button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 TechLancers. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let userRole = '';
+
+        // Function to select role and show login/signup options
+        function selectRole(role) {
+            userRole = role;
+            document.getElementById('roleSelection').style.display = 'none';
+            document.getElementById('actionSelection').style.display = 'block';
+            alert(`You selected: ${role.charAt(0).toUpperCase() + role.slice(1)}`);
+        }
+
+        // JavaScript to toggle between login and signup forms
+        function showLoginForm() {
+            document.getElementById("signupForm").style.display = "none";
+            document.getElementById("loginForm").style.display = "block";
+        }
+
+        function showSignupForm() {
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("signupForm").style.display = "block";
+        }
+
+        // JavaScript to handle login
+        function login() {
+            const loginAadhar = document.getElementById("loginAadhar").value;
+            const loginPassword = document.getElementById("loginPassword").value;
+
+            // Check if Aadhar and password match with the signed-up data (for demonstration, using localStorage)
+            const storedAadhar = localStorage.getItem(`${userRole}_aadhar`);
+            const storedPassword = localStorage.getItem(`${userRole}_password`);
+
+            if (loginAadhar === storedAadhar && loginPassword === storedPassword) {
+                alert("Login successful!");
+            } else {
+                alert("Invalid Aadhar Card or Password!");
+            }
+        }
+
+        // JavaScript to handle signup
+        function signup() {
+            const name = document.getElementById("name").value;
+            const mobile = document.getElementById("mobile").value;
+            const aadhar = document.getElementById("aadhar").value;
+            const password = document.getElementById("password").value;
+
+            // Simple validation (You can add more advanced validation)
+            if (name && mobile && aadhar && password) {
+                // Store the Aadhar card and password for future login (for demonstration, using localStorage)
+                localStorage.setItem(`${userRole}_aadhar`, aadhar);
+                localStorage.setItem(`${userRole}_password`, password);
+
+                alert("Signup successful! Please login.");
+                showLoginForm(); // Switch to login form after successful signup
+            } else {
+                alert("Please fill out all fields!");
+            }
+        }
+    </script>
+</body>
+
+</html>
