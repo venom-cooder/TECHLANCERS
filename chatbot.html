@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Project - TechLancers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container Styling */
+        .container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Form and Employer Section Styling */
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            margin-right: 20px;
+        }
+
+        .employer-container {
+            background-color: #e0f7fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        /* Input Group */
+        .input-group {
+            margin: 20px 0;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .input-group select,
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Button Styling */
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Success Message Styling */
+        .success-message {
+            background-color: #e0ffe0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .success-message h3 {
+            color: #28a745;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            color: #555;
+            font-size: 1rem;
+        }
+
+        /* Employer Details Styling */
+        .employer-container h3 {
+            color: #007bff;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .employer-container p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .employer-container .project-details {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Project Submission Form -->
+        <div class="form-container">
+            <header>
+                <h1>Send Your Project</h1>
+                <p>Please submit your project files to the employer.</p>
+            </header>
+
+            <form id="projectForm">
+                <div class="input-group">
+                    <label for="fileType">Select File Type:</label>
+                    <select id="fileType" onchange="showUploadOption()">
+                        <option value="">-- Select --</option>
+                        <option value="pdf">PDF</option>
+                        <option value="video">Video</option>
+                        <option value="images">Images</option>
+                    </select>
+                </div>
+
+                <div id="uploadOptions" class="input-group" style="display: none;">
+                    <!-- File Upload Inputs -->
+                    <label id="fileLabel" for="fileInput">Upload File:</label>
+                    <input type="file" id="fileInput" multiple>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn">Send Project</button>
+            </form>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message" style="display: none;">
+                <h3>Project Submitted Successfully!</h3>
+                <p>Thank you for submitting your project. The employer will review it and get back to you soon.</p>
+            </div>
+        </div>
+
+        <!-- Employer Details Sidebar -->
+        <div class="employer-container">
+            <h3>Employer Details</h3>
+            <p><strong>Employer Name:</strong> John Doe</p>
+            <div class="project-details">
+                <p><strong>Project:</strong> Website Design</p>
+                <p><strong>Description:</strong> Create a responsive website with a clean, user-friendly interface. The site should include a landing page, about page, and contact form.</p>
+                <p><strong>Deadline:</strong> 10th September 2024</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to display the appropriate file upload input based on the selected file type
+        function showUploadOption() {
+            const fileType = document.getElementById("fileType").value;
+            const uploadOptions = document.getElementById("uploadOptions");
+            const fileLabel = document.getElementById("fileLabel");
+            const fileInput = document.getElementById("fileInput");
+
+            if (fileType) {
+                uploadOptions.style.display = "block";
+
+                // Update label and input attributes based on selected file type
+                if (fileType === "pdf") {
+                    fileLabel.innerHTML = "Upload PDF File:";
+                    fileInput.accept = ".pdf";
+                } else if (fileType === "video") {
+                    fileLabel.innerHTML = "Upload Video File:";
+                    fileInput.accept = "video/*";
+                } else if (fileType === "images") {
+                    fileLabel.innerHTML = "Upload Image Files:";
+                    fileInput.accept = "image/*";
+                }
+            } else {
+                uploadOptions.style.display = "none";
+            }
+        }
+
+        // Function to handle form submission
+        document.getElementById("projectForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Simulate a successful submission
+            document.getElementById("projectForm").style.display = "none";
+            document.getElementById("successMessage").style.display = "block";
+        });
+    </script>
+</body>
+
+</html>
