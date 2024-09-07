@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Dashboard - TechLancers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic reset and global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://miro.medium.com/v2/resize:fit:1400/1*oUPYHaJYWSIuEpOSh9dK5Q.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        .dashboard-container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .dashboard-container h1 {
+            color: #1a237e;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .tabs button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #1a237e;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .tabs button:hover {
+            background-color: #0d47a1;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        .section h2 {
+            color: #1a237e;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .project-list {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .project-list ul {
+            list-style-type: none;
+        }
+        .project-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .project-list li:last-child {
+            border-bottom: none;
+        }
+        .project-list a {
+            text-decoration: none;
+            color: #1a237e;
+            font-weight: bold;
+        }
+        .project-list a:hover {
+            text-decoration: underline;
+        }
+        .project-list-item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .project-list-item:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+        .no-projects {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #ff5722;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <h1>Freelancer Dashboard</h1>
+
+        <!-- Tabs for Navigation -->
+        <div class="tabs">
+            <button onclick="showSection('currentProjects')">Current Projects</button>
+            <button onclick="showSection('completedProjects')">Completed Projects</button>
+            <button onclick="showSection('submittedGigs')">Submitted Gigs</button>
+        </div>
+
+        <!-- Current Projects Section -->
+        <div id="currentProjects" class="section">
+            <h2>Current Projects</h2>
+            <ul id="currentProjectList">
+                <!-- Current Projects will be dynamically added here -->
+            </ul>
+            <div id="noCurrentProjects" class="no-projects" style="display:none;">
+                No current projects.
+            </div>
+        </div>
+
+        <!-- Completed Projects Section -->
+        <div id="completedProjects" class="section">
+            <h2>Completed Projects</h2>
+            <ul id="completedProjectList">
+                <!-- Completed Projects will be dynamically added here -->
+            </ul>
+            <div id="noCompletedProjects" class="no-projects" style="display:none;">
+                No completed projects.
+            </div>
+        </div>
+
+        <!-- Submitted Gigs Section -->
+        <div id="submittedGigs" class="section">
+            <h2>Submitted Gigs</h2>
+            <ul id="submittedGigList">
+                <!-- Submitted Gigs will be dynamically added here -->
+            </ul>
+            <div id="noSubmittedGigs" class="no-projects" style="display:none;">
+                No submitted gigs.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to show the selected section and hide others
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Function to update project lists
+        function updateProjectLists() {
+            const currentProjectList = document.getElementById("currentProjectList");
+            const completedProjectList = document.getElementById("completedProjectList");
+            const submittedGigList = document.getElementById("submittedGigList");
+            const noCurrentProjects = document.getElementById("noCurrentProjects");
+            const noCompletedProjects = document.getElementById("noCompletedProjects");
+            const noSubmittedGigs = document.getElementById("noSubmittedGigs");
+
+            // Clear lists
+            currentProjectList.innerHTML = "";
+            completedProjectList.innerHTML = "";
+            submittedGigList.innerHTML = "";
+
+            // Sample data can be replaced with actual data
+            const projects = [];
+
+            let hasCurrentProjects = false;
+            let hasCompletedProjects = false;
+            let hasSubmittedGigs = false;
+
+            projects.forEach(project => {
+                const listItem = document.createElement("li");
+                listItem.className = "project-list-item";
+                listItem.innerHTML = `<strong>${project.title}</strong><br>Description: ${project.description}<br>Start Date: ${project.startDate.toDateString()}`;
+
+                if (project.status === 'Current') {
+                    hasCurrentProjects = true;
+                    currentProjectList.appendChild(listItem);
+                } else if (project.status === 'Completed') {
+                    hasCompletedProjects = true;
+                    completedProjectList.appendChild(listItem);
+                } else if (project.status === 'Gig') {
+                    hasSubmittedGigs = true;
+                    submittedGigList.appendChild(listItem);
+                }
+            });
+
+            noCurrentProjects.style.display = hasCurrentProjects ? "none" : "block";
+            noCompletedProjects.style.display = hasCompletedProjects ? "none" : "block";
+            noSubmittedGigs.style.display = hasSubmittedGigs ? "none" : "block";
+        }
+
+        // Initial call to display the Current Projects section by default
+        showSection('currentProjects');
+        updateProjectLists();
+    </script>
+</body>
+
+</html>

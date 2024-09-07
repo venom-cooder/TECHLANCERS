@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Freelancer Profile - TechLancers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic reset and global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://stafftimerapp.com/wp-content/uploads/2019/05/time-tracking-software.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .profile-form {
+            background-color: #c8b582;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            width: 100%;
+            text-align: left;
+        }
+        .profile-form h2 {
+            margin-bottom: 20px;
+            color: #1a237e;
+            font-size: 2rem;
+        }
+        .profile-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .profile-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .profile-form input[type="file"] {
+            padding: 5px;
+        }
+        .profile-form button {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .profile-form button:hover {
+            background-color: #388e3c;
+        }
+        .profile-form .skills-section {
+            margin-top: 20px;
+        }
+        .profile-form .skills-section h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            color: #1a237e;
+        }
+        .profile-form .skills-boxes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .profile-form .skills-box {
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            padding: 15px;
+            width: calc(50% - 20px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: #fff;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .profile-form .skills-box:hover {
+            transform: scale(1.05);
+        }
+        .profile-form .skills-box input {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            cursor: pointer;
+        }
+        .profile-form .skills-box h4 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .profile-form .skills-box p {
+            font-size: 0.9rem;
+        }
+        .profile-form .more-skills {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .profile-form .more-skills:hover {
+            background-color: #c8e6c9;
+        }
+        .profile-form .more-skills-content {
+            display: none;
+            margin-top: 10px;
+        }
+        .profile-form .more-skills-content .skills-box {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        .profile-form .manual-skill-input {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .profile-form .manual-skill-input input[type="text"] {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .profile-form .manual-skill-input button {
+            background-color: #2196f3;
+            color: white;
+        }
+        .profile-form .manual-skill-input button:hover {
+            background-color: #1976d2;
+        }
+        @media (max-width: 768px) {
+            .profile-form {
+                padding: 20px;
+            }
+            .profile-form .skills-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-container">
+        <div class="profile-form">
+            <h2>Create Your Freelancer Profile</h2>
+            <label for="profileName">Name:</label>
+            <input type="text" id="profileName" placeholder="Enter Name">
+            <label for="profileEmail">Email:</label>
+            <input type="email" id="profileEmail" placeholder="Enter Email">
+            <label for="profilePic">Profile Picture:</label>
+            <input type="file" id="profilePic" accept="image/*">
+            <label for="portfolio">Portfolio (PDF):</label>
+            <input type="file" id="portfolio" accept=".pdf">
+
+            <div class="skills-section">
+                <h3>Select Your Skills</h3>
+                <div class="skills-boxes">
+                    <div class="skills-box" style="background-image: url('https://www.7boats.com/wp-content/uploads/2012/09/Content-creation.jpg');">
+                        <input type="checkbox" id="webContentWriting" name="skills" value="Web Content Writing">
+                        <h4>Web Content Writing</h4>
+                        <p>Expertise in creating engaging content for websites, blogs, and online articles to attract and retain audience.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://wallpaperaccess.com/full/939999.jpg');">
+                        <input type="checkbox" id="logoDesigning" name="skills" value="Logo Designing">
+                        <h4>Logo Designing</h4>
+                        <p>Skilled in designing unique and impactful logos that represent brand identity and values effectively.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://e1.pxfuel.com/desktop-wallpaper/286/228/desktop-wallpaper-black-graphic-design-gallery-black-graphics.jpg ');">
+                        <input type="checkbox" id="graphicDesigning" name="skills" value="Graphic Designing">
+                        <h4>Graphic Designing</h4>
+                        <p>Proficient in creating visual content like posters, banners, and infographics to communicate messages clearly.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://www.shutterstock.com/shutterstock/videos/9970415/thumb/1.jpg');">
+                        <input type="checkbox" id="seo" name="skills" value="SEO">
+                        <h4>SEO</h4>
+                        <p>Expert in optimizing content to rank higher on search engines and drive organic traffic to websites.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://static.vecteezy.com/system/resources/thumbnails/003/565/496/small/digital-marketing-abstract-technology-background-free-vector.jpg');">
+                        <input type="checkbox" id="digitalMarketing" name="skills" value="Digital Marketing">
+                        <h4>Digital Marketing</h4>
+                        <p>Experience in promoting products or services through digital channels to reach a target audience.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://www.shutterstock.com/image-vector/video-camera-icon-on-black-600w-429840745.jpg');">
+                        <input type="checkbox" id="videoEditing" name="skills" value="Video Editing">
+                        <h4>Video Editing</h4>
+                        <p>Proficient in editing video content to create engaging and polished multimedia projects.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://wallpapercave.com/wp/wp14199572.jpg');">
+                        <input type="checkbox" id="3dModeling" name="skills" value="3D Modeling">
+                        <h4>3D Modeling</h4>
+                        <p>Skilled in creating three-dimensional representations of objects for various applications.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://www.segnalezero.com/wp-content/themes/yootheme/cache/31/content-marketing-strategy-318403f2.jpeg');">
+                       <input type="checkbox" id="contentStrategy" name="skills" value="Content Strategy">
+                        <h4>Content Strategy</h4>
+                        <p>Experienced in planning, developing, and managing content to achieve business goals and engage audiences.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://img.freepik.com/premium-vector/abstract-background-with-waves-vector-illustration_648489-99.jpg');">
+                        <input type="checkbox" id="illustration" name="skills" value="Illustration">
+                        <h4>Illustration</h4>
+                        <p>Proficient in creating original illustrations for books, advertisements, and other visual media.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://miro.medium.com/v2/resize:fit:1000/1*djOWBfUNhFUPeDHchV9cEQ.jpeg');">
+                        <input type="checkbox" id="uxDesign" name="skills" value="UX Design">
+                        <h4>UX Design</h4>
+                        <p>Experienced in designing user experiences that are intuitive and user-centered for web and mobile applications.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://t3.ftcdn.net/jpg/03/89/32/80/360_F_389328016_ak3iUrk15slWfEZdYL96O6eKTUyImDeC.jpg');">
+                        <input type="checkbox" id="socialMediaManagement" name="skills" value="Social Media Management">
+                        <h4>Social Media Management</h4>
+                        <p>Experienced in managing and optimizing social media profiles to enhance brand presence.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvajXqQLP3l6hgalH3SC2TSHwNXZwF83D77g&s');">
+                        <input type="checkbox" id="copywriting" name="skills" value="Copywriting">
+                        <h4>Copywriting</h4>
+                        <p>Proficient in writing persuasive and engaging copy for advertisements, websites, and more.</p>
+                    </div>
+                </div>
+                <div class="more-skills" onclick="toggleMoreSkills()">
+                    <p>Show More Skills</p>
+                </div>
+                <div class="more-skills-content">
+                    <div class="skills-box" style="background-image: url('https://t3.ftcdn.net/jpg/05/00/79/02/360_F_500790266_gaZS8kRQeZsUbD1zKOJJ8bjI0uwNLghi.jpg');">
+                        <input type="checkbox" id="appDevelopment" name="skills" value="App Development">
+                        <h4>App Development</h4>
+                        <p>Skilled in building and maintaining applications for mobile and web platforms.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRr0N-WQEIjSyOyvcds6OezGv91MH-IgMPeA&s');">
+                        <input type="checkbox" id="technicalWriting" name="skills" value="Technical Writing">
+                        <h4>Technical Writing</h4>
+                        <p>Experienced in creating clear and concise technical documentation and manuals.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://as2.ftcdn.net/v2/jpg/04/38/09/63/1000_F_438096310_mTGjmZirNLLu7rlXK1E1RIepkSNiu6tW.jpg');">
+                        <input type="checkbox" id="customerSupport" name="skills" value="Customer Support">
+                        <h4>Customer Support</h4>
+                        <p>Proficient in providing exceptional customer service and support through various channels.</p>
+                    </div>
+                    <div class="skills-box" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfaBdOpTj6KboiuRuPdD079AyLNpQT6hxeCQ&s');">
+                        <input type="checkbox" id="dataAnalysis" name="skills" value="Data Analysis">
+                        <h4>Data Analysis</h4>
+                        <p>Experienced in analyzing data to provide insights and drive business decisions.</p>
+                    </div>
+                    
+                </div>
+                <div class="manual-skill-input">
+                    <input type="text" id="manualSkill" placeholder="Add a custom skill">
+                    <button type="button" onclick="addCustomSkill()">Add Skill</button>
+                </div>
+            </div>
+            <button onclick="saveProfile()">Save Profile</button>
+        </div>
+    </div>
+
+    <script>
+        function saveProfile() {
+            const name = document.getElementById("profileName").value;
+            const email = document.getElementById("profileEmail").value;
+            const profilePic = document.getElementById("profilePic").files[0];
+            const portfolio = document.getElementById("portfolio").files[0];
+            const skills = Array.from(document.querySelectorAll('input[name="skills"]:checked'))
+                                 .map(skill => skill.value);
+
+            if (name && email && profilePic && portfolio && skills.length) {
+                alert("Profile saved successfully!");
+                console.log("Name:", name);
+                console.log("Email:", email);
+                console.log("Skills:", skills);
+                console.log("Profile Pic:", profilePic.name);
+                console.log("Portfolio:", portfolio.name);
+            } else {
+                alert("Please fill out all fields and select at least one skill!");
+            }
+        }
+
+        function toggleMoreSkills() {
+            const moreSkillsContent = document.querySelector('.more-skills-content');
+            moreSkillsContent.style.display = moreSkillsContent.style.display === 'none' || moreSkillsContent.style.display === '' ? 'block' : 'none';
+        }
+
+        function addCustomSkill() {
+            const customSkillInput = document.getElementById('manualSkill');
+            const customSkill = customSkillInput.value.trim();
+
+            if (customSkill) {
+                const skillsBox = document.createElement('div');
+                skillsBox.className = 'skills-box';
+                skillsBox.style.backgroundColor = '#e8f5e9'; // Set a default background color for custom skills
+                skillsBox.innerHTML = `
+                    <input type="checkbox" id="${customSkill.replace(/\s+/g, '')}" name="skills" value="${customSkill}">
+                    <h4>${customSkill}</h4>
+                    <p>Description for ${customSkill}. Add your description here.</p>
+                `;
+
+                document.querySelector('.skills-boxes').appendChild(skillsBox);
+                customSkillInput.value = '';
+            } else {
+                alert("Please enter a skill name!");
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Sign Up - TechLancers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic reset and global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://etimg.etb2bimg.com/photo/84397730.cms') no-repeat center center fixed; /* Replace with your image URL */
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .signup-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .signup-form {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            width: 100%;
+            text-align: left;
+        }
+        .signup-form h2 {
+            margin-bottom: 20px;
+            color: #1a237e;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        .signup-form label {
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .signup-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #333;
+        }
+        .signup-form input::placeholder {
+            color: #999;
+        }
+        .signup-form button {
+            background-color: #4caf50;
+            color: rgb(18, 17, 17);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin-top: 20px;
+        }
+        .signup-form button:hover {
+            background-color: #388e3c;
+        }
+        .signup-form .toggle-link {
+            color: #1a237e;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .signup-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="signup-container">
+        <div class="signup-form">
+            <h2>Employer Sign Up</h2>
+            <label for="companyName">Company Name:</label>
+            <input type="text" id="companyName" placeholder="Enter Company Name">
+            <label for="companyEmail">Email:</label>
+            <input type="email" id="companyEmail" placeholder="Enter Email">
+            <label for="aadharNumber">Aadhar Number:</label>
+            <input type="text" id="aadharNumber" placeholder="Enter Aadhar Number">
+            <label for="companyPassword">Password:</label>
+            <input type="password" id="companyPassword" placeholder="Enter Password">
+            <button onclick="signup()">Sign Up</button>
+            <p class="toggle-link" onclick="window.location.href='employer-login.html'">Already have an account? Login</p>
+        </div>
+    </div>
+
+    <script>
+        function signup() {
+            const companyName = document.getElementById("companyName").value;
+            const companyEmail = document.getElementById("companyEmail").value;
+            const companyPassword = document.getElementById("companyPassword").value;
+            const aadharNumber = document.getElementById("aadharNumber").value;
+
+            if (companyName && companyEmail && companyPassword && aadharNumber) {
+                localStorage.setItem("employer_email", companyEmail);
+                localStorage.setItem("employer_password", companyPassword);
+                localStorage.setItem("employer_aadhar", aadharNumber);
+                alert("Signup successful! Please login.");
+                window.location.href = 'employer-login.html';
+            } else {
+                alert("Please fill out all fields!");
+            }
+        }
+    </script>
+</body>
+
+</html>
